@@ -21,16 +21,13 @@ struct SettingsView: View {
             Divider()
 
             settingsRow("目标 Wi-Fi") {
-                HStack(spacing: 8) {
-                    EditableComboBox(
-                        text: selectedSSIDBinding,
-                        items: selectableSSIDs,
-                        placeholder: "输入或选择 Wi-Fi",
-                        onWillPopUp: refreshAvailableSSIDs,
-                        onWillDismiss: refreshAvailableSSIDs
-                    )
-                    .frame(width: 300, height: 26)
-                }
+                EditableComboBox(
+                    text: selectedSSIDBinding,
+                    items: selectableSSIDs,
+                    placeholder: "输入或选择 Wi-Fi",
+                    onWillPopUp: refreshAvailableSSIDs
+                )
+                .frame(width: 300, height: 26)
             }
             Divider()
 
@@ -125,7 +122,7 @@ struct SettingsView: View {
     private func refreshAvailableSSIDs() async {
         guard !isScanningWiFi else { return }
         isScanningWiFi = true
-        availableSSIDs = await WiFiNetworkScanner.scan()
+        availableSSIDs = await scanWiFiNetworks()
         isScanningWiFi = false
     }
 
@@ -150,7 +147,6 @@ private struct EditableComboBox: NSViewRepresentable {
     let items: [String]
     let placeholder: String
     let onWillPopUp: () async -> Void
-    let onWillDismiss: () async -> Void
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -215,10 +211,6 @@ private struct EditableComboBox: NSViewRepresentable {
             Task { await parent.onWillPopUp() }
         }
 
-        func comboBoxWillDismiss(_ notification: Notification) {
-            Task { await parent.onWillDismiss() }
-        }
-
         private func updateText(_ value: String) {
             guard parent.text != value else { return }
             parent.text = value
@@ -226,17 +218,15 @@ private struct EditableComboBox: NSViewRepresentable {
     }
 }
 
-private enum WiFiNetworkScanner {
-    static func scan() async -> [String] {
-        await Task.detached(priority: .utility) {
-            let interface = CWWiFiClient.shared().interface()
-            let currentSSID = interface?.ssid()
-            let cachedSSIDs = interface?.cachedScanResults()?
-                .compactMap(\.ssid) ?? []
-            let scannedSSIDs = (try? interface?.scanForNetworks(withName: nil))?
-                .compactMap(\.ssid) ?? []
+private func scanWiFiNetworks() async -> [String] {
+    await Task.detached(priority: .utility) {
+        let interface = CWWiFiClient.shared().interface()
+        let currentSSID = interface?.ssid()
+        let cachedSSIDs = interface?.cachedScanResults()?
+            .compactMap(\.ssid) ?? []
+        let scannedSSIDs = (try? interface?.scanForNetworks(withName: nil))?
+            .compactMap(\.ssid) ?? []
 
-            return SSIDNormalizer.normalizedList(cachedSSIDs + scannedSSIDs + [currentSSID].compactMap { $0 })
-        }.value
-    }
+        return SSIDNormalizer.normalizedList(cachedSSIDs + scannedSSIDs + [currentSSID].compactMap { $0 })
+    }.value
 }

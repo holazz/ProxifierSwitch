@@ -50,7 +50,8 @@ final class AppState: ObservableObject {
     }
 
     var currentSSIDText: String {
-        currentSSID?.isEmpty == false ? currentSSID! : "未连接"
+        guard let ssid = currentSSID, !ssid.isEmpty else { return "未连接" }
+        return ssid
     }
 
     var proxifierStatusText: String {
