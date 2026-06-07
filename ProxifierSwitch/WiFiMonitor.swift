@@ -1,4 +1,5 @@
 import CoreWLAN
+import Dispatch
 import Foundation
 import SystemConfiguration
 
@@ -6,15 +7,10 @@ final class WiFiMonitor {
     var onNetworkChange: (@MainActor () -> Void)?
     private var dynamicStore: SCDynamicStore?
     private var runLoopSource: CFRunLoopSource?
-    private var watchedInterfaceName: String?
     private var callbackBox: CallbackBox?
 
-    deinit {
-        stop()
-    }
-
     func start() {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         guard dynamicStore == nil else { return }
 
         let box = CallbackBox(self)
@@ -35,6 +31,7 @@ final class WiFiMonitor {
         )
 
         guard let dynamicStore = SCDynamicStoreCreate(nil, "ProxifierSwitch" as CFString, callback, &context) else {
+            Diagnostics.shared.error("Failed to create SCDynamicStore")
             return
         }
 
@@ -42,29 +39,29 @@ final class WiFiMonitor {
         let keys = Self.notificationKeys(for: interfaceName) as CFArray
 
         guard SCDynamicStoreSetNotificationKeys(dynamicStore, keys, nil) else {
+            Diagnostics.shared.error("Failed to set SCDynamicStore notification keys")
             return
         }
 
         guard let runLoopSource = SCDynamicStoreCreateRunLoopSource(nil, dynamicStore, 0) else {
+            Diagnostics.shared.error("Failed to create SCDynamicStore run loop source")
             return
         }
 
         self.callbackBox = box
         self.dynamicStore = dynamicStore
         self.runLoopSource = runLoopSource
-        watchedInterfaceName = interfaceName
         CFRunLoopAddSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
     }
 
     func stop() {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         if let runLoopSource {
             CFRunLoopRemoveSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
         }
         runLoopSource = nil
         dynamicStore = nil
         callbackBox = nil
-        watchedInterfaceName = nil
     }
 
     func currentSSID() async -> String? {

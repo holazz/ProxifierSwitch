@@ -26,12 +26,12 @@ struct MenuBarView: View {
 
     private func openSettingsWindow() {
         // SwiftUI exposes Settings as a scene; these selectors are the macOS-compatible way to reveal it.
-        if NSApplication.shared.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil) {
+        if NSApplication.shared.sendAction(Selector("showSettingsWindow:"), to: nil, from: nil) {
             NSApplication.shared.activate(ignoringOtherApps: true)
             return
         }
 
-        NSApplication.shared.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+        NSApplication.shared.sendAction(Selector("showPreferencesWindow:"), to: nil, from: nil)
         NSApplication.shared.activate(ignoringOtherApps: true)
     }
 }

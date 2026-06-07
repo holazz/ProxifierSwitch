@@ -42,7 +42,7 @@ struct ProxifierController {
     func terminate() async -> Bool {
         let apps = NSRunningApplication.runningApplications(withBundleIdentifier: AppConstants.proxifierBundleIdentifier)
         guard !apps.isEmpty else { return true }
-        guard apps.allSatisfy({ $0.terminate() }) else { return false }
+        apps.forEach { _ = $0.terminate() }
 
         let deadline = Date().addingTimeInterval(5)
         while Date() < deadline {
@@ -78,10 +78,16 @@ final class SingleResumeContinuation<Value>: @unchecked Sendable {
 
     func resume(_ result: Value, continuation: CheckedContinuation<Value, Never>) {
         lock.lock()
-        defer { lock.unlock() }
-        guard !didResume else { return }
+        let shouldResume: Bool
+        if didResume {
+            shouldResume = false
+        } else {
+            didResume = true
+            shouldResume = true
+        }
+        lock.unlock()
 
-        didResume = true
+        guard shouldResume else { return }
         continuation.resume(returning: result)
     }
 }

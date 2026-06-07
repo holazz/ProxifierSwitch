@@ -4,7 +4,7 @@ import OSLog
 final class Diagnostics {
     static let shared = Diagnostics()
 
-    private let logger = Logger(subsystem: "com.local.ProxifierSwitch", category: "default")
+    private let logger = Logger(subsystem: AppConstants.appBundleIdentifier, category: "default")
     private let lock = NSLock()
     private var entries: [String] = []
     private var isEnabled = true
@@ -13,8 +13,9 @@ final class Diagnostics {
 
     func setEnabled(_ isEnabled: Bool) {
         lock.lock()
+        defer { lock.unlock() }
+
         self.isEnabled = isEnabled
-        lock.unlock()
     }
 
     func log(_ message: String) {

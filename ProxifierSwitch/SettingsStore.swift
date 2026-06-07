@@ -112,12 +112,7 @@ final class SettingsStore: ObservableObject {
         let isInstalled = loginItemManager.isInstalled()
         guard launchAtLogin != isInstalled else { return }
 
-        if launchAtLogin {
-            configureLaunchAtLogin()
-        } else {
-            defaults.set(isInstalled, forKey: Keys.launchAtLogin)
-            launchAtLogin = isInstalled
-        }
+        configureLaunchAtLogin()
     }
 
     private func requestNotificationAuthorization() {

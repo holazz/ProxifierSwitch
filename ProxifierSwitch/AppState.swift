@@ -72,7 +72,10 @@ final class AppState: ObservableObject {
     }
 
     func checkNow(reason: String = "立即检查") async {
-        updateCurrentSSID(await wiFiMonitor.currentSSID())
+        let ssid = await wiFiMonitor.currentSSID()
+        guard !Task.isCancelled else { return }
+
+        updateCurrentSSID(ssid)
         let isRunning = proxifierController.isRunning()
         updateProxifierIsRunning(isRunning)
         diagnostics.log("Check reason=\(reason), ssid=\(currentSSIDText), proxifier=\(proxifierStatusText)")
@@ -96,6 +99,7 @@ final class AppState: ObservableObject {
             await ensureProxifierClosed(reason: reason, currentlyRunning: isRunning)
         }
 
+        guard !Task.isCancelled else { return }
         updateLastEvent("\(reason)：\(currentSSIDText)")
     }
 
@@ -120,6 +124,8 @@ final class AppState: ObservableObject {
         }
 
         let didOpen = await proxifierController.open(at: settingsStore.proxifierApplicationPath)
+        guard !Task.isCancelled else { return }
+
         updateProxifierIsRunning(didOpen || proxifierController.isRunning())
         diagnostics.log("Open Proxifier result: \(didOpen)")
         if didOpen {
@@ -135,6 +141,8 @@ final class AppState: ObservableObject {
         }
 
         let didClose = await proxifierController.terminate()
+        guard !Task.isCancelled else { return }
+
         updateProxifierIsRunning(proxifierController.isRunning())
         diagnostics.log("Close Proxifier result: \(didClose)")
         if didClose {

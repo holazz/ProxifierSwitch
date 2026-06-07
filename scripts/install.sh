@@ -6,6 +6,9 @@ APP_NAME="Proxifier Switch.app"
 DEST_DIR="$HOME/Applications"
 BUILD_DIR="$PROJECT_DIR/.build"
 XCODEGEN="${XCODEGEN:-$HOME/.local/bin/xcodegen}"
+CODE_SIGNING_ALLOWED="${CODE_SIGNING_ALLOWED:-YES}"
+CODE_SIGN_STYLE="${CODE_SIGN_STYLE:-Manual}"
+CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY:--}"
 
 cd "$PROJECT_DIR"
 if [[ -x "$XCODEGEN" ]]; then
@@ -21,7 +24,9 @@ xcodebuild \
   -configuration Release \
   -destination "platform=macOS,arch=arm64" \
   -derivedDataPath "$BUILD_DIR" \
-  CODE_SIGNING_ALLOWED="${CODE_SIGNING_ALLOWED:-NO}" \
+  CODE_SIGNING_ALLOWED="$CODE_SIGNING_ALLOWED" \
+  CODE_SIGN_STYLE="$CODE_SIGN_STYLE" \
+  CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
   build
 
 mkdir -p "$DEST_DIR"

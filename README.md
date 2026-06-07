@@ -30,6 +30,14 @@ xcodebuild \
 
 `project.yml` is kept as the project source definition. If a compatible XcodeGen binary is available at `$HOME/.local/bin/xcodegen` or `XCODEGEN=/path/to/xcodegen`, the scripts regenerate `ProxifierSwitch.xcodeproj`; otherwise they use the checked-in/generated project directly.
 
+## Install Locally
+
+```bash
+scripts/install.sh
+```
+
+The install script builds a Release app with ad-hoc signing by default, which does not require a paid Apple Developer account and is closer to the GitHub Release artifact.
+
 ## Release
 
 Create a version commit, tag it, and push the tag:
