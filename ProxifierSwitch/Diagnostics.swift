@@ -5,8 +5,6 @@ final class Diagnostics {
     static let shared = Diagnostics()
 
     private let logger = Logger(subsystem: "com.local.ProxifierSwitch", category: "default")
-    private static let timestampFormatter = ISO8601DateFormatter()
-    private static let timestampLock = NSLock()
     private let lock = NSLock()
     private var entries: [String] = []
     private var isEnabled = true
@@ -85,9 +83,6 @@ final class Diagnostics {
     }
 
     private static func timestamp() -> String {
-        timestampLock.lock()
-        defer { timestampLock.unlock() }
-
-        return timestampFormatter.string(from: Date())
+        Date().ISO8601Format()
     }
 }

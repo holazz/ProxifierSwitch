@@ -28,14 +28,18 @@ final class AppState: ObservableObject {
         self.diagnostics = diagnostics
 
         wiFiMonitor.onNetworkChange = { [weak self] in
-            Task { @MainActor in
-                self?.scheduleCheck(reason: "网络变化")
-            }
+            self?.scheduleCheck(reason: "网络变化")
         }
         wiFiMonitor.start()
         observeSettingsChanges()
         observeApplicationChanges()
         scheduleCheck(reason: "启动")
+    }
+
+    deinit {
+        debounceTask?.cancel()
+        cancellables.removeAll()
+        wiFiMonitor.stop()
     }
 
     var automationStatusText: String {

@@ -3,58 +3,68 @@ import Foundation
 import SystemConfiguration
 
 final class WiFiMonitor {
-    var onNetworkChange: (() -> Void)?
+    var onNetworkChange: (@MainActor () -> Void)?
     private var dynamicStore: SCDynamicStore?
     private var runLoopSource: CFRunLoopSource?
     private var watchedInterfaceName: String?
+    private var callbackBox: CallbackBox?
 
     deinit {
         stop()
     }
 
     func start() {
+        assert(Thread.isMainThread)
         guard dynamicStore == nil else { return }
 
+        let box = CallbackBox(self)
         let callback: SCDynamicStoreCallBack = { _, _, info in
             guard let info else { return }
-            let monitor = Unmanaged<WiFiMonitor>.fromOpaque(info).takeUnretainedValue()
-            monitor.onNetworkChange?()
+            let box = Unmanaged<CallbackBox>.fromOpaque(info).takeUnretainedValue()
+            Task { @MainActor in
+                box.monitor?.onNetworkChange?()
+            }
         }
 
         var context = SCDynamicStoreContext(
             version: 0,
-            info: Unmanaged.passUnretained(self).toOpaque(),
+            info: Unmanaged.passUnretained(box).toOpaque(),
             retain: nil,
             release: nil,
             copyDescription: nil
         )
 
-        dynamicStore = SCDynamicStoreCreate(nil, "ProxifierSwitch" as CFString, callback, &context)
-        guard let dynamicStore else { return }
+        guard let dynamicStore = SCDynamicStoreCreate(nil, "ProxifierSwitch" as CFString, callback, &context) else {
+            return
+        }
 
-        watchedInterfaceName = Self.wiFiInterfaceName()
-        let keys = Self.notificationKeys(for: watchedInterfaceName) as CFArray
+        let interfaceName = Self.wiFiInterfaceName()
+        let keys = Self.notificationKeys(for: interfaceName) as CFArray
 
         guard SCDynamicStoreSetNotificationKeys(dynamicStore, keys, nil) else {
-            self.dynamicStore = nil
             return
         }
 
-        guard let source = SCDynamicStoreCreateRunLoopSource(nil, dynamicStore, 0) else {
-            self.dynamicStore = nil
+        guard let runLoopSource = SCDynamicStoreCreateRunLoopSource(nil, dynamicStore, 0) else {
             return
         }
 
-        runLoopSource = source
-        CFRunLoopAddSource(CFRunLoopGetMain(), source, .commonModes)
+        self.callbackBox = box
+        self.dynamicStore = dynamicStore
+        self.runLoopSource = runLoopSource
+        watchedInterfaceName = interfaceName
+        CFRunLoopAddSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
     }
 
     func stop() {
+        assert(Thread.isMainThread)
         if let runLoopSource {
             CFRunLoopRemoveSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
         }
         runLoopSource = nil
         dynamicStore = nil
+        callbackBox = nil
+        watchedInterfaceName = nil
     }
 
     func currentSSID() async -> String? {
@@ -138,5 +148,13 @@ final class WiFiMonitor {
         }
 
         return nil
+    }
+}
+
+private final class CallbackBox {
+    weak var monitor: WiFiMonitor?
+
+    init(_ monitor: WiFiMonitor) {
+        self.monitor = monitor
     }
 }

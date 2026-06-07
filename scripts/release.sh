@@ -10,8 +10,9 @@ fi
 VERSION="${1#v}"
 TAG="v$VERSION"
 INFO_PLIST="ProxifierSwitch/Info.plist"
+versionRegex='^[0-9]+(\.[0-9]+){0,2}$'
 
-if [[ ! "$VERSION" =~ '^[0-9]+(\.[0-9]+){0,2}$' ]]; then
+if [[ ! "$VERSION" =~ $versionRegex ]]; then
   echo "Invalid version: $1"
   echo "Use a numeric version like 1.0.0"
   exit 1

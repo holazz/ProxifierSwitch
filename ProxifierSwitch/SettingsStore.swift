@@ -8,16 +8,7 @@ final class SettingsStore: ObservableObject {
         didSet { defaults.set(automationEnabled, forKey: Keys.automationEnabled) }
     }
 
-    @Published var targetSSID: String {
-        didSet {
-            let normalized = SSIDNormalizer.normalized(targetSSID)
-            guard normalized == targetSSID else {
-                targetSSID = normalized
-                return
-            }
-            defaults.set(normalized, forKey: Keys.targetSSID)
-        }
-    }
+    @Published private(set) var targetSSID: String
 
     @Published var proxifierApplicationPath: String {
         didSet { defaults.set(proxifierApplicationPath, forKey: Keys.proxifierApplicationPath) }
@@ -89,7 +80,10 @@ final class SettingsStore: ObservableObject {
     }
 
     func setTargetSSID(_ rawValue: String) {
-        targetSSID = rawValue
+        let normalized = SSIDNormalizer.normalized(rawValue)
+        guard targetSSID != normalized else { return }
+        targetSSID = normalized
+        defaults.set(normalized, forKey: Keys.targetSSID)
     }
 
     static func clampedDebounceSeconds(_ value: Double) -> Double {
