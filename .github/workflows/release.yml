@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-dmg:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build release app
+        run: |
+          xcodebuild \
+            -project ProxifierSwitch.xcodeproj \
+            -scheme ProxifierSwitch \
+            -configuration Release \
+            -destination "platform=macOS,arch=arm64" \
+            -derivedDataPath .build \
+            CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="-" \
+            build
+
+      - name: Create DMG
+        run: |
+          APP_PATH=".build/Build/Products/Release/Proxifier Switch.app"
+          DIST_DIR="dist"
+          DMG_ROOT="$DIST_DIR/dmg-root"
+          DMG_PATH="$DIST_DIR/Proxifier-Switch-${GITHUB_REF_NAME}.dmg"
+
+          mkdir -p "$DMG_ROOT"
+          cp -R "$APP_PATH" "$DMG_ROOT/"
+          hdiutil create \
+            -volname "Proxifier Switch" \
+            -srcfolder "$DMG_ROOT" \
+            -ov \
+            -format UDZO \
+            "$DMG_PATH"
+
+      - name: Upload GitHub Release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/Proxifier-Switch-${{ github.ref_name }}.dmg
+          body: |
+            This build is ad-hoc signed and is not notarized.
+
+            On first launch, macOS may block the app because the developer cannot be verified.
+            Open System Settings > Privacy & Security and choose Open Anyway.

@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		028AD079DB5D287B7DC451B6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE314D642D18E1E2BF5A790D /* SettingsView.swift */; };
+		2C6905B4BCD8C8144C31D7B3 /* ProxifierSwitchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAE23A9CF54A9F9F8E4F7D2 /* ProxifierSwitchApp.swift */; };
+		36D5DDFCC293A3A40B3FA04D /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E5807A731F0CA3EA656672 /* AppConstants.swift */; };
+		3C108E884976D4A4005B04DE /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB79006CA42BE82EDF110060 /* SettingsStore.swift */; };
+		49E846D09AC4AAB279F0F68A /* ProxifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47325938E0F249DAB98CA85 /* ProxifierController.swift */; };
+		7A30624B5BAABBEA9E00CC76 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F68369BC46B072A2E80A4 /* AppState.swift */; };
+		8CA52B0F7C2A59C60249028B /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6826F0887A9C9A5E0571211 /* Diagnostics.swift */; };
+		8D394D0399D7019971C7AB6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1632EC713C26CE1F44ECFD15 /* Assets.xcassets */; };
+		BE01CB2B0DC9583E58517268 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F6A7300CE73C9FE819EB19 /* LoginItemManager.swift */; };
+		C802B4F47AC48167042A9642 /* WiFiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75BF0BD918FB0EBEF80D38 /* WiFiMonitor.swift */; };
+		E6A65387E08DEEC6BC6A5F03 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7CD1A76E93FB21B6877E0 /* MenuBarView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0BB7CD1A76E93FB21B6877E0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		1632EC713C26CE1F44ECFD15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		272F68369BC46B072A2E80A4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		32E5807A731F0CA3EA656672 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		3635D7A1CF003BE9F5B14A1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6255AA78E7CF29E4C77BADA6 /* ProxifierSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProxifierSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B75BF0BD918FB0EBEF80D38 /* WiFiMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiMonitor.swift; sourceTree = "<group>"; };
+		A7F6A7300CE73C9FE819EB19 /* LoginItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemManager.swift; sourceTree = "<group>"; };
+		AE314D642D18E1E2BF5A790D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DAAE23A9CF54A9F9F8E4F7D2 /* ProxifierSwitchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxifierSwitchApp.swift; sourceTree = "<group>"; };
+		DB79006CA42BE82EDF110060 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		E47325938E0F249DAB98CA85 /* ProxifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxifierController.swift; sourceTree = "<group>"; };
+		F6826F0887A9C9A5E0571211 /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1F493BC2532584A9CC97CB78 = {
+			isa = PBXGroup;
+			children = (
+				C15B5A92CFD1652FDAB245EC /* ProxifierSwitch */,
+				9F35C3EA7635B6348943C167 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9F35C3EA7635B6348943C167 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6255AA78E7CF29E4C77BADA6 /* ProxifierSwitch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C15B5A92CFD1652FDAB245EC /* ProxifierSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				32E5807A731F0CA3EA656672 /* AppConstants.swift */,
+				272F68369BC46B072A2E80A4 /* AppState.swift */,
+				1632EC713C26CE1F44ECFD15 /* Assets.xcassets */,
+				F6826F0887A9C9A5E0571211 /* Diagnostics.swift */,
+				3635D7A1CF003BE9F5B14A1A /* Info.plist */,
+				A7F6A7300CE73C9FE819EB19 /* LoginItemManager.swift */,
+				0BB7CD1A76E93FB21B6877E0 /* MenuBarView.swift */,
+				E47325938E0F249DAB98CA85 /* ProxifierController.swift */,
+				DAAE23A9CF54A9F9F8E4F7D2 /* ProxifierSwitchApp.swift */,
+				DB79006CA42BE82EDF110060 /* SettingsStore.swift */,
+				AE314D642D18E1E2BF5A790D /* SettingsView.swift */,
+				8B75BF0BD918FB0EBEF80D38 /* WiFiMonitor.swift */,
+			);
+			path = ProxifierSwitch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D483417FA0CBE081EA6E5F58 /* ProxifierSwitch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8F99A0D0DC2BE0AB1A932FB /* Build configuration list for PBXNativeTarget "ProxifierSwitch" */;
+			buildPhases = (
+				38A258C73E96CF12277FD729 /* Sources */,
+				AACFF63077F397E5BA6D4C16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProxifierSwitch;
+			productName = ProxifierSwitch;
+			productReference = 6255AA78E7CF29E4C77BADA6 /* ProxifierSwitch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFAEFE999A1E8E1ADFA20DBF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					D483417FA0CBE081EA6E5F58 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CAC0E2E419A1589E084968C1 /* Build configuration list for PBXProject "ProxifierSwitch" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 1F493BC2532584A9CC97CB78;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D483417FA0CBE081EA6E5F58 /* ProxifierSwitch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AACFF63077F397E5BA6D4C16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D394D0399D7019971C7AB6C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38A258C73E96CF12277FD729 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D5DDFCC293A3A40B3FA04D /* AppConstants.swift in Sources */,
+				7A30624B5BAABBEA9E00CC76 /* AppState.swift in Sources */,
+				8CA52B0F7C2A59C60249028B /* Diagnostics.swift in Sources */,
+				BE01CB2B0DC9583E58517268 /* LoginItemManager.swift in Sources */,
+				E6A65387E08DEEC6BC6A5F03 /* MenuBarView.swift in Sources */,
+				49E846D09AC4AAB279F0F68A /* ProxifierController.swift in Sources */,
+				2C6905B4BCD8C8144C31D7B3 /* ProxifierSwitchApp.swift in Sources */,
+				3C108E884976D4A4005B04DE /* SettingsStore.swift in Sources */,
+				028AD079DB5D287B7DC451B6 /* SettingsView.swift in Sources */,
+				C802B4F47AC48167042A9642 /* WiFiMonitor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0CCC7CCC0B725E76F7B86244 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		51E683E6F6EA759540B38DCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = ProxifierSwitch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.local.ProxifierSwitch;
+				PRODUCT_MODULE_NAME = ProxifierSwitch;
+				PRODUCT_NAME = "Proxifier Switch";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7286E3427BC17422F3E386AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = ProxifierSwitch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.local.ProxifierSwitch;
+				PRODUCT_MODULE_NAME = ProxifierSwitch;
+				PRODUCT_NAME = "Proxifier Switch";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8E7C6DD40EE0819F2E16F582 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CAC0E2E419A1589E084968C1 /* Build configuration list for PBXProject "ProxifierSwitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CCC7CCC0B725E76F7B86244 /* Debug */,
+				8E7C6DD40EE0819F2E16F582 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D8F99A0D0DC2BE0AB1A932FB /* Build configuration list for PBXNativeTarget "ProxifierSwitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51E683E6F6EA759540B38DCA /* Debug */,
+				7286E3427BC17422F3E386AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFAEFE999A1E8E1ADFA20DBF /* Project object */;
+}
